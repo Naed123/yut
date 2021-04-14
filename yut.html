@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href ="yut.css">
+    <head>
+        <title>Yut Nori</title>
+        <h1 id="head">Welcome to Yut Nori</h1>
+        <h2 id="head2">Please Press Start to Continue</h2>
+    </head>
+    
+    <body>
+       <img src="floor.png" alt="opps something went wrong" style="width:800px;height:800px;" class="map">
+        
+        
+        <button id="btn" class="btnMain" type="button" onclick="start()">Start</button>
+
+        <script>
+    
+            var t = 0;
+            var res = [];
+            var left = 0;
+            var top = 0;
+            
+            function start() {
+                if (t == 0){
+                    document.getElementById("btn").innerHTML = "Roll";
+                    document.getElementById("head2").innerHTML = "Please click the button to roll your Yut";
+                    document.getElementById("head").innerHTML = "Red's turn";
+                    document.getElementById("head").style.color="red"
+                    t = 1;
+                }
+                else if (t==1){
+                    document.getElementById("btn").innerHTML = "End Turn";
+                    document.getElementById("head2").innerHTML = "Please click the button to end your turn";
+                    let yut, yutB;
+                    
+                    for (let i =0; i < 3; i++){
+                        yut = Math.floor(Math.random() * 2);
+                        if (yut == 0){
+                            var img = document.createElement("img");
+                            img.src= "head.png";
+                            img.style.height = "245px";
+                            img.style.width = "80px";
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                            res[i] = 0;
+                        }
+                        else{
+                             var img = document.createElement("img");
+                            img.src= "tail.png";
+                             img.style.height = "245px";
+                            img.style.width = "80px";
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                            res[i] = 1;
+                        }
+                    }
+                    
+                    yutB = Math.floor(Math.random() * 2);
+                     if (yutB == 0){
+                        var img = document.createElement("img");
+                        img.src= "head.png";
+                        img.style.height = "245px";
+                        img.style.width = "80px";
+                        let x = document.getElementById("yut").rows[0].cells;
+                        x[4].innerHTML = "";
+                        x[4].appendChild(img);
+                        res[3] = 0;
+                    }
+                    else{
+                        var img = document.createElement("img");
+                        img.src= "back.png";
+                        img.style.height = "245px";
+                        img.style.width = "80px";
+                        let x = document.getElementById("yut").rows[0].cells;
+                        x[4].innerHTML = "";
+                        x[4].appendChild(img);
+                        res[3] = 1;
+                    }
+                    result();
+                    t = 2;
+                }
+                else if (t==2){
+                    document.getElementById("btn").innerHTML = "Roll";
+                    document.getElementById("head2").innerHTML = "Please click the button to roll your Yut";
+                    document.getElementById("head").innerHTML = "Blue's turn";
+                    document.getElementById("head").style.color="blue"
+                    t = 3;
+                }
+                else if (t==3){
+                    document.getElementById("btn").innerHTML = "End Turn";
+                    document.getElementById("head2").innerHTML = "Please click the button to end your turn";
+                          let yut, yutB;
+                    
+                    for (let i =0; i < 3; i++){
+                        yut = Math.floor(Math.random() * 2);
+                        if (yut == 0){
+                            var img = document.createElement("img");
+                            img.src= "head.png";
+                            img.style.height = "245px";
+                            img.style.width = "80px";
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                            res[i] = 0;
+                        }
+                        else{
+                             var img = document.createElement("img");
+                            img.src= "tail.png";
+                            img.style.height = "245px";
+                            img.style.width = "80px";
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                            res[i] = 1;
+                        }
+                    }
+                    
+                    yutB = Math.floor(Math.random() * 2);
+                     if (yutB == 0){
+                        var img = document.createElement("img");
+                        img.src= "head.png";
+                        img.style.height = "245px";
+                        img.style.width = "80px";
+                        let x = document.getElementById("yut").rows[0].cells;
+                        x[4].innerHTML = "";
+                        x[4].appendChild(img);
+                        res[3] = 0;
+                        }
+                    else{
+                        var img = document.createElement("img");
+                        img.src= "back.png";
+                        img.style.height = "245px";
+                        img.style.width = "80px";
+                        let x = document.getElementById("yut").rows[0].cells;
+                        x[4].innerHTML = "";
+                        x[4].appendChild(img);
+                        res[3] = 1;
+                    }
+                    t = 0;
+                    result();
+                }
+            }   
+            
+            function result(){
+                let x = document.getElementById("yut").rows[1].cells;
+                var count = 0;
+                if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 1){
+                    count = -1;
+                }
+                else {
+                    for (let i =0; i < 4; i++){
+                        count += res[i];
+                    }
+                    if (count == 0){
+                        count = 5;
+                    }
+                }
+                switch (count){
+                    case 1:
+                        x[0].innerHTML = "Result is: Do(1 Space)";
+                        break;
+                    case 2:
+                        x[0].innerHTML = "Result is: Gae(2 Spaces)";
+                        break;  
+                    case 3:
+                        x[0].innerHTML = "Result is: Geol(3 Spaces)";
+                        break;
+                    case 4:
+                        x[0].innerHTML = "Result is: Yut(4 Spaces)";
+                        break;
+                    case -1:
+                        x[0].innerHTML = "Result is: Back Do(-1 Space)";
+                        break;
+                    case 5:
+                        x[0].innerHTML = "Result is: Mo(5 Spaces)";
+                        break;
+                }
+                
+                
+                    
+            }
+            /*
+            function pos(int){
+                left=0;
+                top=0;
+                switch (posi){
+                    case 1:
+                        left = 85;
+                        top= 200;
+                        break;
+                    case 2:
+                        
+                }
+                
+            }
+            */
+        </script>
+    
+        <img src="red.png" alt="opps something went wrong" class="s2" style="left: 85px; top: 200px">
+        
+        <table style="position: absolute; left: 850px; top: 250px;">
+            <tr>
+                <th>Team</th>
+                <th>Mal Left</th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="red.png" alt="opps something went wrong" style="width:30px;height:30px">
+                </td>
+                <td style="text-align: center">x 4</td>
+            </tr>
+            <tr>
+                 <td>
+                    <img src="blue.png" alt="opps something went wrong" style="width:30px;height:30px">
+                </td>
+                <td style="text-align: center">x 4</td>
+            </tr>
+        </table>
+        
+        <table id="yut" style="position: absolute; left: 850px; top: 400px;">
+            <tr>
+                <th>Yut</th>
+                <td>
+                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                </td>
+                <td>
+                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                </td>
+                  <td>
+                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                </td>
+                <td>
+                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                </td>
+                <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
+            </tr>
+        </table>
+        <div> <!--Map:Circle-->
+            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 50px;top: 165px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 165px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 303px;top: 165px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 430px;top: 165px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 555px;top: 165px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 670px;top: 165px;">
+        
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 310px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 430px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 560px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 680px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 50px;top: 790px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 310px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 430px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 560px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 680px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 670px;top: 790px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 790px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 303px;top: 790px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 430px;top: 790px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 555px;top: 790px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 280px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 680px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 280px;top: 390px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 280px;top: 580px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 365px;top: 480px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 570px;top: 280px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 570px;top: 680px;">
+            
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 480px;top: 390px;">
+            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 480px;top: 580px;">
+        </div>
+        
+        <div> <!--Map:Arrow-->
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="left: 633px; top: 820px">
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(270deg); left: 703px; top: 760px">
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 640px; top: 760px">
+            
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(180deg); left: 630px; top: 190px">
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 640px; top: 260px">
+            
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(90deg); left: 75px; top: 280px">
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 150px; top: 270px">
+            
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 150px; top: 760px">
+            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="left: 150px; top:820px">
+        </div>
+     
+        
+        
+    </body>
