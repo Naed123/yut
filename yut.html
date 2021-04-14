@@ -181,24 +181,153 @@
                 
                     
             }
-            /*
-            function pos(int){
-                left=0;
-                top=0;
+           
+        </script>
+        
+        <script>
+        
+         var posit = {left: '', top: ''};
+            
+            
+            function pos(posi){
                 switch (posi){
                     case 1:
-                        left = 85;
-                        top= 200;
+                        posit.left = '70px';
+                        posit.top= '190px';
                         break;
                     case 2:
-                        
+                        posit.left = '190px';
+                        posit.top= '180px';
+                        break;
+                    case 3:
+                        posit.left = '315px';
+                        posit.top= '180px';
+                        break;
+                    case 4:
+                        posit.left = '440px';
+                        posit.top= '180px';
+                        break;
+                    case 5:
+                        posit.left = '565px';
+                        posit.top= '180px';
+                        break;
+                    case 6:
+                        posit.left = '690px';
+                        posit.top= '190px';
+                        break;
+                    case 7:
+                        posit.left = '70px';
+                        posit.top= '320px';
+                        break;
+                    case 8:
+                        posit.left = '190px';
+                        posit.top= '295px';
+                        break;
+                    case 9:
+                        posit.left = '580px';
+                        posit.top= '295px';
+                        break;
+                    case 10:
+                        posit.left = '695px';
+                        posit.top= '325px';
+                        break;
+                    case 11:
+                        posit.left = '65px';
+                        posit.top= '445px';
+                        break;
+                    case 12:
+                        posit.left = '290px';
+                        posit.top= '405px';
+                        break;
+                    case 13:
+                        posit.left = '490px';
+                        posit.top= '405px';
+                        break;
+                    case 14:
+                        posit.left = '695px';
+                        posit.top= '445px';
+                        break;
+                    case 15:
+                        posit.left = '65px';
+                        posit.top= '575px';
+                        break;
+                    case 16:
+                        posit.left = '290px';
+                        posit.top= '595px';
+                        break;
+                    case 17:
+                        posit.left = '385px';
+                        posit.top= '505px';
+                        break;
+                    case 18:
+                        posit.left = '490px';
+                        posit.top= '595px';
+                        break;
+                    case 19:
+                        posit.left = '695px';
+                        posit.top= '575px';
+                        break;
+                    case 20:
+                        posit.left = '65px';
+                        posit.top= '695px';
+                        break;
+                    case 21:
+                        posit.left = '190px';
+                        posit.top= '695px';
+                        break;
+                    case 22:
+                        posit.left = '580px';
+                        posit.top= '695px';
+                        break;
+                    case 23:
+                        posit.left = '695px';
+                        posit.top= '695px';
+                        break;
+                    case 24:
+                        posit.left = '70px';
+                        posit.top= '815px';
+                        break;
+                    case 25:
+                        posit.left = '190px';
+                        posit.top= '805px';
+                        break;
+                    case 26:
+                        posit.left = '315px';
+                        posit.top= '805px';
+                        break;
+                    case 27:
+                        posit.left = '440px';
+                        posit.top= '805px';
+                        break;
+                    case 28:
+                        posit.left = '565px';
+                        posit.top= '805px';
+                        break;
+                    case 29:
+                        posit.left = '690px';
+                        posit.top= '810px';
+                        break;
                 }
                 
             }
-            */
+           
+        
         </script>
-    
-        <img src="red.png" alt="opps something went wrong" class="s2" style="left: 85px; top: 200px">
+        <div id="test">
+        <script> 
+            var img = document.createElement("img");
+            img.src= "red.png";
+            img.style.position = "absolute";
+            img.style.zIndex = 3;
+            img.style.width= "30px"
+            img.style.height="30px"
+            pos(29);
+            img.style.left= posit.left;
+            img.style.top = posit.top;
+            img.src = "red.png";
+            var src = document.getElementById("test");
+            src.appendChild(img);</script>
+        </div>
         
         <table style="position: absolute; left: 850px; top: 250px;">
             <tr>
