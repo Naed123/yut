@@ -8,19 +8,20 @@
     </head>
     
     <body>
-       <img src="floor.png" alt="opps something went wrong" style="width:800px;height:800px;" class="map">
+        <!--Map-->
+        <img src="floor.png" alt="opps something went wrong" style="width:800px;height:800px;" class="map">
         
         
         <button id="btn" class="btnMain" type="button" onclick="start()">Start</button>
 
         <script>
-    
             var t = 0;
             var res = [];
             var left = 0;
             var top = 0;
             
             function start() {
+                //Start of the infinite loop(red first)
                 if (t == 0){
                     document.getElementById("btn").innerHTML = "Roll";
                     document.getElementById("head2").innerHTML = "Please click the button to roll your Yut";
@@ -29,10 +30,13 @@
                     t = 1;
                 }
                 else if (t==1){
+                    //When roll is pressed(red's turn)
                     document.getElementById("btn").innerHTML = "End Turn";
                     document.getElementById("head2").innerHTML = "Please click the button to end your turn";
-                    let yut, yutB;
                     
+                    //yutb = one with -1
+                    let yut, yutB;
+                    // rng display heads or tail depending on result
                     for (let i =0; i < 3; i++){
                         yut = Math.floor(Math.random() * 2);
                         if (yut == 0){
@@ -40,6 +44,7 @@
                             img.src= "head.png";
                             img.style.height = "245px";
                             img.style.width = "80px";
+                            //display on a table
                             let x = document.getElementById("yut").rows[0].cells;
                             x[i+1].innerHTML = "";
                             x[i+1].appendChild(img);
@@ -186,9 +191,9 @@
         
         <script>
         
-         var posit = {left: '', top: ''};
-            
-            
+            var posit = {left: '', top: ''};
+
+            //postion for each circle
             function pos(posi){
                 switch (posi){
                     case 1:
@@ -308,11 +313,12 @@
                         posit.top= '810px';
                         break;
                 }
-                
+
             }
            
         
         </script>
+        <!-- putting pieces into certain circle -->
         <div id="test">
         <script> 
             var img = document.createElement("img");
@@ -321,14 +327,16 @@
             img.style.zIndex = 3;
             img.style.width= "30px"
             img.style.height="30px"
-            pos(29);
+            pos(1);
             img.style.left= posit.left;
             img.style.top = posit.top;
             img.src = "red.png";
             var src = document.getElementById("test");
-            src.appendChild(img);</script>
+            src.appendChild(img);
+        </script>
         </div>
         
+        <!-- pieces left over -->
         <table style="position: absolute; left: 850px; top: 250px;">
             <tr>
                 <th>Team</th>
@@ -348,6 +356,7 @@
             </tr>
         </table>
         
+        <!-- dice table -->
         <table id="yut" style="position: absolute; left: 850px; top: 400px;">
             <tr>
                 <th>Yut</th>
@@ -369,7 +378,9 @@
                 <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
             </tr>
         </table>
-        <div> <!--Map:Circle-->
+        
+        <!--Map:Circle-->
+        <div>
             <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 50px;top: 165px;">
             <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 165px;">
             <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 303px;top: 165px;">
@@ -409,7 +420,8 @@
             <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 480px;top: 580px;">
         </div>
         
-        <div> <!--Map:Arrow-->
+        <!--Map:Arrow-->
+        <div> 
             <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="left: 633px; top: 820px">
             <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(270deg); left: 703px; top: 760px">
             <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 640px; top: 760px">
