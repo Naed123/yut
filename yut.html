@@ -13,8 +13,44 @@
         
         
         <button id="btn" class="btnMain" type="button" onclick="start()">Start</button>
+        
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Open Modal</button>
 
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <!-- dice table -->
+                <table id="yut" style="position: relative;">
+                    <tr>
+                        <th>Yut</th>
+                        <td>
+                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                        </td>
+                        <td>
+                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                        </td>
+                          <td>
+                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                        </td>
+                        <td>
+                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+
+                        </td>
+                        <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        
         <script>
+            var mal_pos = [0,0,0,0,0,0,0];
             var t = 0;
             var res = [];
             var left = 0;
@@ -83,7 +119,48 @@
                         x[4].appendChild(img);
                         res[3] = 1;
                     }
-                    result();
+                    
+                 
+                    // Get the modal
+                    var modal = document.getElementById("myModal");
+
+                    //open the modal
+                    modal.style.display = "block";
+                    
+                    show_result();
+               
+                    let spaces = result();
+                    
+                    if (spaces != 4||spaces != 5||spaces != -1){
+                        mal_pos[0] += spaces;
+                        move(mal_pos[0]);
+                    }
+                    
+                    /* test for all map
+                    for (let i = 1; i < 30; i++) {
+                        setTimeout(function timer() {
+                        move(i)
+                      }, i * 1000);
+                      }*/
+                    
+                  
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                      }
+                    }
+                    
+                  
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     t = 2;
                 }
                 else if (t==2){
@@ -148,7 +225,24 @@
                 }
             }   
             
+            //return spaces need to be moved
             function result(){
+                var count = 0;
+                if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 1){
+                    count = -1;
+                }
+                else {
+                    for (let i =0; i < 4; i++){
+                        count += res[i];
+                    }
+                    if (count == 0){
+                        count = 5;
+                    }
+                }
+                return count;
+            }
+            
+            function show_result(){
                 let x = document.getElementById("yut").rows[1].cells;
                 var count = 0;
                 if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 1){
@@ -190,29 +284,54 @@
         </script>
         
         <script>
-        
+                    // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+
             var posit = {left: '', top: ''};
 
             //postion for each circle
             function pos(posi){
                 switch (posi){
-                    case 1:
+                    case 11:
                         posit.left = '70px';
                         posit.top= '190px';
                         break;
-                    case 2:
+                    case 10:
                         posit.left = '190px';
                         posit.top= '180px';
                         break;
-                    case 3:
+                    case 9:
                         posit.left = '315px';
                         posit.top= '180px';
                         break;
-                    case 4:
+                    case 8:
                         posit.left = '440px';
                         posit.top= '180px';
                         break;
-                    case 5:
+                    case 7:
                         posit.left = '565px';
                         posit.top= '180px';
                         break;
@@ -220,95 +339,95 @@
                         posit.left = '690px';
                         posit.top= '190px';
                         break;
-                    case 7:
+                    case 12:
                         posit.left = '70px';
                         posit.top= '320px';
                         break;
-                    case 8:
+                    case 26:
                         posit.left = '190px';
                         posit.top= '295px';
                         break;
-                    case 9:
+                    case 21:
                         posit.left = '580px';
                         posit.top= '295px';
                         break;
-                    case 10:
+                    case 5:
                         posit.left = '695px';
                         posit.top= '325px';
                         break;
-                    case 11:
+                    case 13:
                         posit.left = '65px';
                         posit.top= '445px';
                         break;
-                    case 12:
+                    case 27:
                         posit.left = '290px';
                         posit.top= '405px';
                         break;
-                    case 13:
+                    case 22:
                         posit.left = '490px';
                         posit.top= '405px';
                         break;
-                    case 14:
+                    case 4:
                         posit.left = '695px';
                         posit.top= '445px';
                         break;
-                    case 15:
+                    case 14:
                         posit.left = '65px';
                         posit.top= '575px';
                         break;
-                    case 16:
+                    case 24:
                         posit.left = '290px';
                         posit.top= '595px';
                         break;
-                    case 17:
+                    case 23:
                         posit.left = '385px';
                         posit.top= '505px';
                         break;
-                    case 18:
+                    case 28:
                         posit.left = '490px';
                         posit.top= '595px';
                         break;
-                    case 19:
+                    case 3:
                         posit.left = '695px';
                         posit.top= '575px';
                         break;
-                    case 20:
+                    case 15:
                         posit.left = '65px';
                         posit.top= '695px';
                         break;
-                    case 21:
+                    case 25:
                         posit.left = '190px';
                         posit.top= '695px';
                         break;
-                    case 22:
+                    case 29:
                         posit.left = '580px';
                         posit.top= '695px';
                         break;
-                    case 23:
+                    case 2:
                         posit.left = '695px';
                         posit.top= '695px';
                         break;
-                    case 24:
+                    case 16:
                         posit.left = '70px';
                         posit.top= '815px';
                         break;
-                    case 25:
+                    case 17:
                         posit.left = '190px';
                         posit.top= '805px';
                         break;
-                    case 26:
+                    case 18:
                         posit.left = '315px';
                         posit.top= '805px';
                         break;
-                    case 27:
+                    case 19:
                         posit.left = '440px';
                         posit.top= '805px';
                         break;
-                    case 28:
+                    case 20:
                         posit.left = '565px';
                         posit.top= '805px';
                         break;
-                    case 29:
+                    case 1:
                         posit.left = '690px';
                         posit.top= '810px';
                         break;
@@ -321,18 +440,21 @@
         <!-- putting pieces into certain circle -->
         <div id="test">
         <script> 
-            var img = document.createElement("img");
-            img.src= "red.png";
-            img.style.position = "absolute";
-            img.style.zIndex = 3;
-            img.style.width= "30px"
-            img.style.height="30px"
-            pos(1);
-            img.style.left= posit.left;
-            img.style.top = posit.top;
-            img.src = "red.png";
-            var src = document.getElementById("test");
-            src.appendChild(img);
+            function move(p){
+                var img = document.createElement("img");
+                img.src= "red.png";
+                img.style.position = "absolute";
+                img.style.zIndex = 3;
+                img.style.width= "30px"
+                img.style.height="30px"
+                pos(p);
+                img.style.left= posit.left;
+                img.style.top = posit.top;
+                img.src = "red.png";
+                var src = document.getElementById("test");
+                src.appendChild(img);
+            }
+            
         </script>
         </div>
         
