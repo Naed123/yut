@@ -12,11 +12,11 @@
         <img src="floor.png" alt="opps something went wrong" style="width:800px;height:800px;" class="map">
         
         
-        <button id="btn" class="btnMain" type="button" onclick="start()">Start</button>
+        <button id="btn" class="btnMain" type="button" style="border-radius: 12px" onclick="start()">Start</button>
         
         <!-- Trigger/Open The Modal -->
         <button id="myBtn">Open Modal</button>
-
+        
         <!-- The Modal -->
         <div id="myModal" class="modal">
 
@@ -28,18 +28,18 @@
                     <tr>
                         <th>Yut</th>
                         <td>
-                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                         </td>
                         <td>
-                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
                         </td>
                           <td>
-                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                         </td>
                         <td>
-                            <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                         </td>
                         <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
@@ -47,6 +47,19 @@
                 </table>
             </div>
 
+        </div>
+         <!-- Trigger/Open The Modal (instructions) -->
+         <button id="howtoplay">How to Play</button>
+         <!-- The Modal -->
+         <div id="howtoplaymodal" class="modal">
+             <!-- Modal content -->  
+             <div class="modal-content">
+             <span class="close">&times;</span>
+             <p>Game Setup: The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
+             <P>Gameplay: At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll.</p>
+             <p>Moving Options: Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
+             <p>Capturing Pieces: If one team's piece lands on another team's piece or must pass over a space containg the other team's piece to finish their turn, the other teams piece becomes captured. The captured piece goes back into the team's bank and can be used to start from the beginning.</p>
+            </div>
         </div>
         
         <script>
@@ -282,7 +295,7 @@
             }
            
         </script>
-        
+         <!--Modal for rolling-->
         <script>
                     // Get the modal
             var modal = document.getElementById("myModal");
@@ -309,6 +322,8 @@
                 modal.style.display = "none";
               }
             }
+
+            
 
             var posit = {left: '', top: ''};
 
@@ -437,6 +452,34 @@
            
         
         </script>
+        <!--Modal for How to Play-->
+        <script>
+            // Get the modal
+            var modal = document.getElementById("howtoplaymodal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("howtoplay");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+            modal.style.display = "none";
+             }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            }
+    </script>
         <!-- putting pieces into certain circle -->
         <div id="test">
         <script> 
@@ -483,18 +526,18 @@
             <tr>
                 <th>Yut</th>
                 <td>
-                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                    <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                 </td>
                 <td>
-                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                    <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
                 </td>
                   <td>
-                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                    <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                 </td>
                 <td>
-                    <img src="q.jpg" alt="opps something went wrong" style="width:80px;height:245px">
+                    <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                 </td>
                 <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
@@ -503,59 +546,59 @@
         
         <!--Map:Circle-->
         <div>
-            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 50px;top: 165px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 165px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 303px;top: 165px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 430px;top: 165px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 555px;top: 165px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 670px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="sb" style="left: 50px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 180px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 303px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 430px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 555px;top: 165px;">
+            <img src="circle.png" alt="opps something went wrong" class="sb" style="left: 670px;top: 165px;">
         
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 310px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 430px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 560px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 55px;top: 680px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 50px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 55px;top: 310px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 55px;top: 430px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 55px;top: 560px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 55px;top: 680px;">
+            <img src="circle.png" alt="opps something went wrong" class="sb" style="left: 50px;top: 790px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 310px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 430px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 560px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 685px;top: 680px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 670px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 685px;top: 310px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 685px;top: 430px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 685px;top: 560px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 685px;top: 680px;">
+            <img src="circle.png" alt="opps something went wrong" class="sb" style="left: 670px;top: 790px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 790px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 303px;top: 790px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 430px;top: 790px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 555px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 180px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 303px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 430px;top: 790px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 555px;top: 790px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 280px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 180px;top: 680px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 180px;top: 280px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 180px;top: 680px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 280px;top: 390px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 280px;top: 580px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 280px;top: 390px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 280px;top: 580px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="sb" style="left: 365px;top: 480px;">
+            <img src="circle.png" alt="opps something went wrong" class="sb" style="left: 365px;top: 480px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 570px;top: 280px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 570px;top: 680px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 570px;top: 280px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 570px;top: 680px;">
             
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 480px;top: 390px;">
-            <img src="ob1.jpg" alt="opps something went wrong" class="s1" style="left: 480px;top: 580px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 480px;top: 390px;">
+            <img src="circle.png" alt="opps something went wrong" class="s1" style="left: 480px;top: 580px;">
         </div>
         
         <!--Map:Arrow-->
         <div> 
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="left: 633px; top: 820px">
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(270deg); left: 703px; top: 760px">
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 640px; top: 760px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="left: 633px; top: 820px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(270deg); left: 703px; top: 760px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 640px; top: 760px">
             
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(180deg); left: 630px; top: 190px">
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 640px; top: 260px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(180deg); left: 630px; top: 190px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 640px; top: 260px">
             
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(90deg); left: 75px; top: 280px">
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 150px; top: 270px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(90deg); left: 75px; top: 280px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(45deg); left: 150px; top: 270px">
             
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 150px; top: 760px">
-            <img src="arrow.jpg" alt="opps something went wrong" class="arrow" style="left: 150px; top:820px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="transform:rotate(135deg); left: 150px; top: 760px">
+            <img src="arrow.png" alt="opps something went wrong" class="arrow" style="left: 150px; top:820px">
         </div>
      
         
