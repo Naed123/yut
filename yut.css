@@ -63,3 +63,50 @@ table, th, td {
     text-decoration: none;
     cursor: pointer;
 }
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.imgNum {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btnModal {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    left: 320px;
+    top: 25px;
+}
+
+.rollAgain {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    left: 850px;
+    top: 670px;
+    font-size: 30pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
