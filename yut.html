@@ -16,56 +16,36 @@
         <h2 id="resultBox" style="position: absolute; left: 850px; top: 350px;">You have rolled: </h2>
         
         
-        <!-- Trigger/Open The Modal -->
-
-        <button id="myBtn">Open Modal</button>
-       
         
         <button id="rollAgain" class="rollAgain" style ="visibility: hidden">Roll Again</button>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <!-- dice table -->
-                <table id="yut" style="position: relative;">
-                    <tr>
-                        <th>Yut</th>
-                        <td>
-                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
-
-                        </td>
-                        <td>
-                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
-                        </td>
-                          <td>
-                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
-
-                        </td>
-                        <td>
-                            <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
-
-                        </td>
-                        <tfoot><tr><td colspan="5" style="text-align: center;">Result: ?</td></tr></tfoot>
-                    </tr>
-                </table>
-
-              
-            </div>
-        </div>
+      
          <!-- Trigger/Open The Modal (instructions) -->
          <button id="howtoplay">How to Play</button>
          <!-- The Modal -->
          <div id="howtoplaymodal" class="modal">
              <!-- Modal content -->  
              <div class="modal-content">
-             <span class="close">&times;</span>
-             <p>Game Setup: The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
-             <P>Gameplay: At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll.</p>
-             <p>Moving Options: Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
-             <p>Capturing Pieces: If one team's piece lands on another team's piece or must pass over a space containg the other team's piece to finish their turn, the other teams piece becomes captured. The captured piece goes back into the team's bank and can be used to start from the beginning.</p>
+                 <span class="close">&times;</span>
+                    <p>Game Setup: The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
+                    <p>Gameplay: At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll.</p>
+                    <p>Moving Options: Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
+                    <p>Capturing Pieces: If one team's piece lands on another team's piece or must pass over a space containg the other team's piece to finish their turn, the other teams piece becomes captured. The captured piece goes back into the team's bank and can be used to start from the beginning.</p>
+            </div>
+        </div>
+        
+        <div id="repeatModal" class="modalRepeat">
+             <!-- Modal content -->  
+             <div>
+                 <h2 id="modalHead"></h2>
+                 <h3 id="modalText">Please choose a piece to move</h3>
+                 <button id = "piece1">1</button>
+                 <button id = "piece2">2</button>
+                 <button id = "piece3">3</button>
+                 <button id = "piece4">4</button>
+                 <h3 id="modalChoice">How many spaces would you like to move that piece?</h3>
+                 <button id = "choice1"></button>
+                 <button id = "choice2"></button>
             </div>
         </div>
         
@@ -76,7 +56,6 @@
             var left = 0;
             var top = 0;
             var again = [];
-            var rpt = 1;
         
             function start() {
                 //Start of the infinite loop(red first)
@@ -85,6 +64,17 @@
                     document.getElementById("head2").innerHTML = "Please click the button to roll your Yut";
                     document.getElementById("head").innerHTML = "Red's turn";
                     document.getElementById("head").style.color="red"
+                    document.getElementById("resultBox").innerHTML = "Result is :"
+                    for (let i =0; i < 4; i++){
+                            var img = document.createElement("img");
+                            img.src= "question.png";
+                            img.style.height = "245px";
+                            img.style.width = "80px";
+                            //display on a table
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                    }
                     t = 1;
                 }
                 else if (t==1){
@@ -116,6 +106,17 @@
                     document.getElementById("head2").innerHTML = "Please click the button to roll your Yut";
                     document.getElementById("head").innerHTML = "Blue's turn";
                     document.getElementById("head").style.color="blue"
+                    document.getElementById("resultBox").innerHTML = "Result is :"
+                    for (let i =0; i < 4; i++){
+                            var img = document.createElement("img");
+                            img.src= "question.png";
+                            img.style.height = "245px";
+                            img.style.width = "80px";
+                            //display on a table
+                            let x = document.getElementById("yut").rows[0].cells;
+                            x[i+1].innerHTML = "";
+                            x[i+1].appendChild(img);
+                    }
                     t = 3;
                 }
                 else if (t==3){
@@ -150,14 +151,16 @@
             function rollAg(){
                 roll();
                 show_result();
-                again[rpt] = result();
+                again[1] = result();
 
-                if (again[rpt] == 4 || again[rpt] == 5){
-                        rpt += 1;
-                        rollAg();
-                }
-                document.getElementById("btn").disabled = false;
+               // document.getElementById("btn").disabled = false;
                 document.getElementById("rollAgain").style.visibility = "hidden";
+                
+                var modal = document.getElementById("repeatModal");
+                setTimeout(() => {  modal.style.display = "block"; }, 2000);
+                document.getElementById("modalHead").innerHTML = "Result for all Rolls(spaces): " + again[0] + " & " + again[1];
+                document.getElementById("choice1").innerHTML = again[0];
+                document.getElementById("choice2").innerHTML = again[1];
             }
             
             
@@ -298,34 +301,7 @@
         </script>
          <!--Modal for rolling-->
         <script>
-                    // Get the modal
-            var modal = document.getElementById("myModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks on the button, open the modal
-            btn.onclick = function() {
-              modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-              modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-              if (event.target == modal) {
-                modal.style.display = "none";
-              }
-            }
-
             
-
             var posit = {left: '', top: ''};
 
             //postion for each circle
@@ -455,6 +431,7 @@
         </script>
         <!--Modal for How to Play-->
         <script>
+            
             // Get the modal
             var modal = document.getElementById("howtoplaymodal");
 
@@ -478,8 +455,26 @@
             window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                }
             }
-            }
+            
+            
+            
+            /*
+            
+            
+               // Get the modal
+            var modal = document.getElementById("repeatModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("howtoplay");
+
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }*/
+
     </script>
         <!-- putting pieces into certain circle -->
         <div id="test">
@@ -501,7 +496,7 @@
         </div>
         
         <!-- pieces left over -->
-        <table style="position: absolute; left: 850px; top: 250px;">
+        <table id="start" style="position: absolute; left: 850px; top: 250px; width: 180px;">
             <tr>
                 <th>Team</th>
                 <th colspan="4">Mal Left</th>
@@ -565,6 +560,33 @@
                 </td>
             </tr>
         </table>
+        
+        <!-- pieces finished -->
+        <table id="finish" style="position: absolute; left: 1050px; top: 250px; width: 180px;">
+            <tr>
+                <th>Team</th>
+                <th colspan="4">Mal Finished</th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="red.png" alt="opps something went wrong" style="width:30px;height:30px">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="blue.png" alt="opps something went wrong" style="width:30px;height:30px">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        
         
         <!-- dice table -->
         <table id="yut" style="position: absolute; left: 850px; top: 400px;">

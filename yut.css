@@ -39,6 +39,19 @@ table, th, td {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.modalRepeat {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    top: 20%;
+    right: 680px;
+    align-self: right;
+    width: 20%; /* Full width */
+    height: 50%; /* Full height */
+    background-color: white; /* Black w/ opacity */
+    border: 2px solid black;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
