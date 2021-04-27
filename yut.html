@@ -20,17 +20,25 @@
         <button id="rollAgain" class="rollAgain" style ="visibility: hidden; border-radius: 12px;">Roll Again</button>
 
       
-         <!-- Trigger/Open The Modal (instructions) -->
-         <button id="howtoplay" style="border-radius: 12px;">How to Play</button>
-         <!-- The Modal -->
-         <div id="howtoplaymodal" class="modal">
-             <!-- Modal content -->  
-             <div class="modal-content">
-                 <span class="close">&times;</span>
-                    <p>Game Setup: The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
-                    <p>Gameplay: At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll.</p>
-                    <p>Moving Options: Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
-                    <p>Capturing Pieces: If one team's piece lands on another team's piece or must pass over a space containg the other team's piece to finish their turn, the other teams piece becomes captured. The captured piece goes back into the team's bank and can be used to start from the beginning.</p>
+        <!-- Trigger/Open The Modal (instructions) -->
+        <button id="howtoplay" style="border-radius: 12px;">How to Play</button>
+        <!-- The Modal -->
+        <div id="howtoplaymodal" class="modal">
+            <!-- Modal content -->  
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Game Setup:</h3> 
+                <p>The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
+                <h3>Gameplay:</h3>
+                <p>At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll. If all four piece finish, the team wins.</p>
+                <h3>Moving Options:</h3> 
+                <p>Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
+                <h3>Capturing Pieces:</h3> 
+                <p>If one team's piece lands on another team's piece, the other teams piece becomes captured. The captured piece goes back into the team's bank and the team who captured the other team gets to roll again.(If they already rolled again for yut or mo, they do not go again)</p>
+                <h3>Rolling again:</h3> 
+                <p>A team can roll their sticks again when they roll either 4(yut) or 5(mo).(a team can roll again only once per turn meaning rolling 4 & 4 or 5 & 5 will not let them roll again) The team can also go again when they capture another team's piece with (geol)3 or less spaces.</p>
+                <h3>Stacking:</h3>
+                <p>A team stack their pieces if one of their pieces land on other piece of their team. When this happens, the pieces stack will count as one, move as one, and captured as one.(If a team decide not to stack and are captured, only the top most piece will be captured)</p>
             </div>
         </div>
         
@@ -917,13 +925,14 @@
         
             
             var posit = {left: '', top: ''};
-
+            var leftPos;
             //postion for each circle
             function pos(posi){
                 
                 switch (posi){
                     case 11:
                         posit.left = '70px';
+                        leftPos = 70;
                         posit.top= '190px';
                         break;
                     case 10:
@@ -1092,10 +1101,6 @@
             modal.style.display = "block";
             }*/
 
-    </script>
-        <!-- putting pieces into certain circle -->
-        <div id = "test">
-        <script> 
             function win(m){
                switch (m){
                     case "r1":
@@ -1432,6 +1437,35 @@
                         catch_mal("r4",n,sp,ag);
                     } 
                 }
+                
+                if (n >= 4 && (mal_pos[n] == mal_pos[4] || mal_pos[n] == mal_pos[5] || mal_pos[n] == mal_pos[6] || mal_pos[n] == mal_pos[7])){
+                    if (mal_pos[n] == mal_pos[4] && n != 4){
+                        add_space("b1",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[5] && n != 5){
+                        add_space("b2",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[6] && n != 6){
+                        add_space("b3",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[7] && n != 7){
+                        add_space("b4",20,mal_pos[n])
+                    } 
+                }
+                else if (n < 4 && (mal_pos[n] == mal_pos[0] || mal_pos[n] == mal_pos[1] || mal_pos[n] == mal_pos[2] || mal_pos[n] == mal_pos[3])){
+                    if (mal_pos[n] == mal_pos[0] && n != 0){
+                        add_space("r1",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[1] && n != 1){
+                        add_space("r2",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[2] && n != 2){
+                        add_space("r3",20,mal_pos[n])
+                    }
+                    else if (mal_pos[n] == mal_pos[3] && n != 3){
+                        add_space("r4",20,mal_pos[n])
+                    } 
+                }
             }
         
             function catch_mal(m,n,sp,ag){
@@ -1616,7 +1650,103 @@
                 
                 
             }
+            
+            function add_space(posRn,spAdd, p){
+                let spFin = "";
+                switch (p){
+                    case 11:
+                        posit.left = 70 + spAdd + "px";
+                        break;
+                    case 10:
+                        posit.left = 190 + spAdd + "px";
+                        break;
+                    case 9:
+                        posit.left = 315 + spAdd + "px";
+                        break;
+                    case 8:
+                        posit.left = 440 + spAdd + "px";
+                        break;
+                    case 7:
+                        posit.left = 565 + spAdd + "px";
+                        break;
+                    case 6:
+                        posit.left = 690 + spAdd + "px";
+                        break;
+                    case 12:
+                        posit.left = 70 + spAdd + "px";
+                        break;
+                    case 26:
+                        posit.left = 190 + spAdd + "px";
+                        break;
+                    case 21:
+                        posit.left = 580 + spAdd + "px";
+                        break;
+                    case 5:
+                        posit.left = 695 + spAdd + "px";
+                        break;
+                    case 13:
+                        posit.left = 65 + spAdd + "px";
+                        break;
+                    case 27:
+                        posit.left = 290 + spAdd + "px";
+                        break;
+                    case 22:
+                        posit.left = 490 + spAdd + "px";
+                        break;
+                    case 4:
+                        posit.left = 695 + spAdd + "px";
+                        break;
+                    case 14:
+                        posit.left = 65 + spAdd + "px";
+                        break;
+                    case 24:
+                        posit.left = 290 + spAdd + "px";
+                        break;
+                    case 23:
+                        posit.left = 385 + spAdd + "px";
+                        break;
+                    case 28:
+                        posit.left = 490 + spAdd + "px";
+                        break;
+                    case 3:
+                        posit.left = 695 + spAdd + "px";
+                        break;
+                    case 15:
+                        posit.left = 65 + spAdd + "px";
+                        break;
+                    case 25:
+                        posit.left = 190 + spAdd + "px";
+                        break;
+                    case 29:
+                        posit.left = 580 + spAdd + "px";
+                        break;
+                    case 2:
+                        posit.left = 695 + spAdd + "px";
+                        break;
+                    case 16:
+                        posit.left = 70 + spAdd + "px";
+                        break;
+                    case 17:
+                        posit.left = 190 + spAdd + "px";
+                        break;
+                    case 18:
+                        posit.left = 315 + spAdd + "px";
+                        break;
+                    case 19:
+                        posit.left = 440 + spAdd + "px";
+                        break;
+                    case 20:
+                        posit.left = 565 + spAdd + "px";
+                        break;
+                    case 1:
+                        posit.left = 690 + spAdd + "px";
+                        break;
+                }
+                let img = document.getElementById(posRn)
+                img.style.left = posit.left;
+            }
         </script>
+        <div id = "test">
         </div>
         
         <!-- pieces left over -->
