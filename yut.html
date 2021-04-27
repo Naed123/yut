@@ -366,7 +366,7 @@
                         document.getElementById("btn").disabled = true;
                         document.getElementById("rollAgain").style.visibility = "visible";
                         document.getElementById("rollAgain").onclick = function() {rollAg(3)};
-                    }
+                        }
                     
                     }
                     
@@ -491,7 +491,7 @@
                         }
                         
                         document.getElementById("btn").disabled = false;
-                        move(mal_pos[n],nie,again[np],n);
+                        move(mal_pos[n],nie,again[np],n,1);
                         modal.style.display = "none";
                     }
                     
@@ -542,7 +542,7 @@
                             nie = "b2";
                         }
                         document.getElementById("btn").disabled = false;
-                        move(mal_pos[n],nie,again[np],n);
+                        move(mal_pos[n],nie,again[np],n,1);
                         modal.style.display = "none";
                     }
                 };
@@ -592,7 +592,7 @@
                             nie = "b3";
                         }
                         document.getElementById("btn").disabled = false;
-                        move(mal_pos[n],nie,again[np],n);
+                        move(mal_pos[n],nie,again[np],n,1);
                         modal.style.display = "none";
                     }
                 };
@@ -642,7 +642,7 @@
                             nie = "b4";
                         }
                         document.getElementById("btn").disabled = false;
-                        move(mal_pos[n],nie,again[np],n);
+                        move(mal_pos[n],nie,again[np],n,1);
                         modal.style.display = "none";
                     }
                 };
@@ -659,7 +659,7 @@
                         
                     document.getElementById("btn").disabled = true;
                     document.getElementById("modalChoice").style.visibility = "hidden";
-                    move(mal_pos[p],pie,again[0],p);
+                    move(mal_pos[p],pie,again[0],p,1);
                     document.getElementById("btn").disabled = true;
                     document.getElementById("choice1").style.visibility = "hidden";
                     document.getElementById("choice2").style.visibility = "hidden";
@@ -735,7 +735,7 @@
                     
                     document.getElementById("btn").disabled = true;
                     document.getElementById("modalChoice").style.visibility = "hidden";
-                    move(mal_pos[p],pie,again[1],p);
+                    move(mal_pos[p],pie,again[1],p,1);
 
                     
                     if (team == 1){
@@ -1133,7 +1133,7 @@
                }   
             }
             
-            function move(p,m,sp,n){
+            function move(p,m,sp,n,ag){
                 var img = document.getElementById(m);
                 img.style.position = "absolute";
                 img.style.zIndex = 3;
@@ -1399,42 +1399,43 @@
                 if (n <= 3 && (mal_pos[n] == mal_pos[4] || mal_pos[n] == mal_pos[5] || mal_pos[n] == mal_pos[6] || mal_pos[n] == mal_pos[7])){
                     if (mal_pos[n] == mal_pos[4]){
                         mal_pos[4] = 1;
-                        catch_mal("b1");
+                        catch_mal("b1",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[5]){
                         mal_pos[5] = 1;
-                        catch_mal("b2");
+                        catch_mal("b2",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[6]){
                         mal_pos[6] = 1;
-                        catch_mal("b3");
+                        catch_mal("b3",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[7]){
                         mal_pos[7] = 1;
-                        catch_mal("b4");
+                        catch_mal("b4",n,sp,ag);
                     } 
                 }
                 else if (n >= 4 && (mal_pos[n] == mal_pos[0] || mal_pos[n] == mal_pos[1] || mal_pos[n] == mal_pos[2] || mal_pos[n] == mal_pos[3])){
                     if (mal_pos[n] == mal_pos[0]){
                         mal_pos[0] = 1;
-                        catch_mal("r1");
+                        catch_mal("r1",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[1]){
                         mal_pos[1] = 1;
-                        catch_mal("r2");
+                        catch_mal("r2",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[2]){
                         mal_pos[2] = 1;
-                        catch_mal("r3");
+                        catch_mal("r3",n,sp,ag);
                     }
                     else if (mal_pos[n] == mal_pos[3]){
                         mal_pos[3] = 1;
-                        catch_mal("r4");
+                        catch_mal("r4",n,sp,ag);
                     } 
                 }
             }
         
-            function catch_mal(m){
+            function catch_mal(m,n,sp,ag){
+                let place = "";
                 switch(m){
                     case "r1":
                         document.getElementById("r1").style.left = "898px";
@@ -1469,6 +1470,151 @@
                         document.getElementById("b4").style.top = "313px";
                         break;
                 }
+                switch(n){
+                    case 0:
+                        place = "r1";
+                        break;
+                    case 1:
+                        place = "r2";
+                        break;
+                    case 2:
+                        place = "r3";
+                        break;
+                    case 3:
+                        place = "r4";
+                        break;
+                    case 4:
+                        place = "b1";
+                        break;
+                    case 5:
+                        place = "b2";
+                        break;
+                    case 6:
+                        place = "b3";
+                        break;
+                    case 7:
+                        place = "b4";
+                        break;
+                }
+                if (sp != 4 && sp != 5 && ag != 1){
+                    roll();
+                    show_result();
+                    let spaces = result();
+
+
+                    document.getElementById("npiece1").disabled = false;
+                    document.getElementById("npiece2").disabled = false;
+                    document.getElementById("npiece3").disabled = false;
+                    document.getElementById("npiece4").disabled = false;
+
+                    document.getElementById("btn").disabled = true;
+                    var modal = document.getElementById("newModal");
+                    setTimeout(() => {  modal.style.display = "block"; }, 1000);
+                    document.getElementById("newModalHead").innerHTML = "Result of Roll(spaces): " + spaces;
+
+                    if (n <= 3){
+                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") == null){
+                        document.getElementById("npiece1").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") == null){
+                            document.getElementById("npiece2").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") == null){
+                            document.getElementById("npiece3").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") == null){
+                            document.getElementById("npiece4").disabled = true;
+                        }
+                    }
+                    else {
+                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") == null){
+                        document.getElementById("npiece1").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") == null){
+                            document.getElementById("npiece2").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") == null){
+                            document.getElementById("npiece3").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") == null){
+                            document.getElementById("npiece4").disabled = true;
+                        }
+                    }
+
+                    if (spaces == -1){
+                        for (let i = 4; i <= 7;i++){
+                            if (mal_pos[i] == 1){
+                                let b = "npiece" + (i-3);
+                                document.getElementById(b).disabled = true;
+                            }
+                        }
+                    }
+                    if (document.getElementById("npiece1").disabled &&
+                        document.getElementById("npiece2").disabled &&
+                        document.getElementById("npiece3").disabled &&
+                        document.getElementById("npiece4").disabled){
+                        document.getElementById("newModalText").innerHTML = "No pieces will be move because you have no pieces to -1 from \n please end your turn";
+                        document.getElementById("btn").disabled = false;
+                     }
+                    let p,pie;
+
+                    document.getElementById("npiece1").onclick = function(){
+                        if (n <= 3){
+                            p = 0;
+                            pie = "r1";
+                        }
+                        else {
+                            p = 4;
+                            pie = "b1";
+                        }
+                        modal.style.display = "none";
+                        move(mal_pos[p],pie,spaces,p);
+
+
+                    };
+                    document.getElementById("npiece2").onclick = function(){
+                        if (n <= 3){
+                            p = 1;
+                            pie = "r2";
+                        }
+                        else {
+                            p = 5;
+                            pie = "b2";
+                        }
+                        modal.style.display = "none";
+                        move(mal_pos[p],pie,spaces,p);
+
+
+                    };
+                    document.getElementById("npiece3").onclick = function(){
+                        if (n <= 3){
+                            p = 2;
+                            pie = "r3";
+                        }
+                        else {
+                            p = 6;
+                            pie = "b3";
+                        }
+                        modal.style.display = "none";
+                        move(mal_pos[p],pie,spaces,p);
+
+
+                    };
+                    document.getElementById("npiece4").onclick = function(){
+                        if (n <= 3){
+                            p = 3;
+                            pie = "r4";
+                        }
+                        else {
+                            p = 7;
+                            pie = "b4";
+                        }
+                        modal.style.display = "none";
+                        move(mal_pos[p],pie,spaces,p);
+                    };
+                }
+                
+                
             }
         </script>
         </div>
