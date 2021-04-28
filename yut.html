@@ -38,7 +38,7 @@
                 <h3>Rolling again:</h3> 
                 <p>A team can roll their sticks again when they roll either 4(yut) or 5(mo).(a team can roll again only once per turn meaning rolling 4 & 4 or 5 & 5 will not let them roll again) The team can also go again when they capture another team's piece with (geol)3 or less spaces.</p>
                 <h3>Stacking:</h3>
-                <p>A team stack their pieces if one of their pieces land on other piece of their team. When this happens, the pieces stack will count as one, move as one, and captured as one.(If a team decide not to stack and are captured, only the top most piece will be captured)</p>
+                <p>A team stack their pieces if one of their pieces land on other piece of their team. When this happens, the pieces stack will count as one, move as one, and captured as one.(even if a team decides not to stack their piece, if the other team captures the space, every piece on that space will be captured.)</p>
             </div>
         </div>
         
@@ -137,116 +137,96 @@
                     //When roll is pressed(red's turn)
                     document.getElementById("btn").innerHTML = "End Turn";
                     document.getElementById("head2").innerHTML = "Please click the button to end your turn";
-                    if (mal_pos[0]==1){
-                        again = [];
-                        roll();
-                        show_result();
-                        let spaces = result();
+                
+                    again = [];
+                    roll();
+                    show_result();
+                    let spaces = result();
 
-                        
-                        if (spaces == 4 || spaces == 5){
-                            again[0] = spaces;
-                            document.getElementById("btn").disabled = true;
-                            document.getElementById("rollAgain").style.visibility = "visible";
-                            document.getElementById("rollAgain").onclick = function() {rollAg(1)};
-                        }
-                        else if (spaces == -1){
-                            document.getElementById("resultBox").innerHTML = "No pieces will be move because you have no pieces to -1 from"
-                        }
-                        else {
-                            move(mal_pos[0],"r1",spaces,0);
-                        }
+                    if (spaces == -1 && (mal_pos[0] == 1 && mal_pos[1] == 1 && mal_pos[2] == 1 && mal_pos[3] == 1)){
+                        document.getElementById("resultBox").innerHTML = "No pieces will be move because you have no pieces to -1 from";
                     }
-                    else{
-                        again = [];
-                        roll();
-                        show_result();
-                        let spaces = result();
-                        
-                        if (spaces != 4 && spaces != 5){
-                            
-                            document.getElementById("npiece1").disabled = false;
-                            document.getElementById("npiece2").disabled = false;
-                            document.getElementById("npiece3").disabled = false;
-                            document.getElementById("npiece4").disabled = false;
-                            
-                            
-                            document.getElementById("btn").disabled = true;
-                            var modal = document.getElementById("newModal");
-                            setTimeout(() => {  modal.style.display = "block"; }, 1000);
-                            document.getElementById("newModalHead").innerHTML = "Result of Roll(spaces): " + spaces;
-                            
-                            if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") == null){
-                                document.getElementById("npiece1").disabled = true;
-                            }
-                            if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") == null){
-                                document.getElementById("npiece2").disabled = true;
-                            }
-                            if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") == null){
-                                document.getElementById("npiece3").disabled = true;
-                            }
-                            if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") == null){
-                                document.getElementById("npiece4").disabled = true;
-                            }
-                            if (spaces == -1){
-                                for (let i = 0; i <= 3;i++){
-                                    if (mal_pos[i] == 1){
-                                        let n = "npiece" + (i+1);
-                                        document.getElementById(n).disabled = true;
-                                    }
+                    else if (spaces != 4 && spaces != 5){
+
+                        document.getElementById("npiece1").disabled = false;
+                        document.getElementById("npiece2").disabled = false;
+                        document.getElementById("npiece3").disabled = false;
+                        document.getElementById("npiece4").disabled = false;
+
+
+                        document.getElementById("btn").disabled = true;
+                        var modal = document.getElementById("newModal");
+                        setTimeout(() => {  modal.style.display = "block"; }, 1000);
+                        document.getElementById("newModalHead").innerHTML = "Result of Roll(spaces): " + spaces;
+
+                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") == null){
+                            document.getElementById("npiece1").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") == null){
+                            document.getElementById("npiece2").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") == null){
+                            document.getElementById("npiece3").disabled = true;
+                        }
+                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") == null){
+                            document.getElementById("npiece4").disabled = true;
+                        }
+                        if (spaces == -1){
+                            for (let i = 0; i <= 3;i++){
+                                if (mal_pos[i] == 1){
+                                    let n = "npiece" + (i+1);
+                                    document.getElementById(n).disabled = true;
                                 }
                             }
-                            if (document.getElementById("npiece1").disabled &&
-                                document.getElementById("npiece2").disabled &&
-                                document.getElementById("npiece3").disabled &&
-                                document.getElementById("npiece4").disabled){
-                                document.getElementById("newModalText").innerHTML = "No pieces will be move because you have no pieces to -1 from \n please end your turn";
-                                document.getElementById("btn").disabled = false;
-                            }
-                            
-                            document.getElementById("npiece1").onclick = function(){
-                                p = 0;
-                                pie = "r1";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
+                        }
+                        if (document.getElementById("npiece1").disabled &&
+                            document.getElementById("npiece2").disabled &&
+                            document.getElementById("npiece3").disabled &&
+                            document.getElementById("npiece4").disabled){
+                            document.getElementById("newModalText").innerHTML = "No pieces will be move because you have no pieces to -1 from \n please end your turn";
+                            document.getElementById("btn").disabled = false;
+                        }
 
-                                
-                            };
-                            document.getElementById("npiece2").onclick = function(){
-                                p = 1;
-                                pie = "r2";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                                
-                            };
-                            document.getElementById("npiece3").onclick = function(){
-                                p = 2;
-                                pie = "r3";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                                
-                            };
-                            document.getElementById("npiece4").onclick = function(){
-                                p = 3;
-                                pie = "r4";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                            };
-                            
-                        }
-                        else if (spaces == 4 || spaces == 5){
-                            again[0] = spaces;
-                            document.getElementById("btn").disabled = true;
-                            document.getElementById("rollAgain").style.visibility = "visible";
-                            document.getElementById("rollAgain").onclick = function() {rollAg(1)};
-                        }
+                        document.getElementById("npiece1").onclick = function(){
+                            p = 0;
+                            pie = "r1";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece2").onclick = function(){
+                            p = 1;
+                            pie = "r2";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece3").onclick = function(){
+                            p = 2;
+                            pie = "r3";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece4").onclick = function(){
+                            p = 3;
+                            pie = "r4";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+                        };
+
                     }
-                    
+                    else if (spaces == 4 || spaces == 5){
+                        again[0] = spaces;
+                        document.getElementById("btn").disabled = true;
+                        document.getElementById("rollAgain").style.visibility = "visible";
+                        document.getElementById("rollAgain").onclick = function() {rollAg(1)};
+                    }
                     t = 2;
-                  
                 }
                 else if (t==2){
                     document.getElementById("btn").innerHTML = "Roll";
@@ -270,105 +250,89 @@
                     document.getElementById("btn").innerHTML = "End Turn";
                     document.getElementById("head2").innerHTML = "Please click the button to end your turn";
                     
-                    if (mal_pos[4]==1){
-                        again = [];
-                        roll();
-                        show_result();
-                        let spaces = result();
-
-                       
-                        if (spaces == 4 || spaces == 5){
-                            again[0] = spaces;
-                            document.getElementById("btn").disabled = true;
-                            document.getElementById("rollAgain").style.visibility = "visible";
-                            document.getElementById("rollAgain").onclick = function() {rollAg(3)};
-                        }
-                        else if (spaces == -1){
-                            document.getElementById("resultBox").innerHTML = "No pieces will be move because you have no pieces to -1 from"
-                        }
-                        else {
-                            move(mal_pos[4],"b1",spaces,4);
-                        }
-                    }
-                    else{
-                        again = [];
-                        roll();
-                        show_result();
-                        let spaces = result();
+                    
+                    
+                    again = [];
+                    roll();
+                    show_result();
+                    let spaces = result();
                         
-                        if (spaces != 4 && spaces != 5){
-                            document.getElementById("npiece1").disabled = false;
-                            document.getElementById("npiece2").disabled = false;
-                            document.getElementById("npiece3").disabled = false;
-                            document.getElementById("npiece4").disabled = false;
-                            
-                            document.getElementById("btn").disabled = true;
-                            var modal = document.getElementById("newModal");
-                            setTimeout(() => {  modal.style.display = "block"; }, 1000);
-                            document.getElementById("newModalHead").innerHTML = "Result of Roll(spaces): " + spaces;
-                            
-                            if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") == null){
-                                document.getElementById("npiece1").disabled = true;
-                            }
-                            if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") == null){
-                                document.getElementById("npiece2").disabled = true;
-                            }
-                            if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") == null){
-                                document.getElementById("npiece3").disabled = true;
-                            }
-                            if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") == null){
-                                document.getElementById("npiece4").disabled = true;
-                            }
-                            if (spaces == -1){
-                                for (let i = 4; i <= 7;i++){
-                                    if (mal_pos[i] == 1){
-                                        let n = "npiece" + (i-3);
-                                        document.getElementById(n).disabled = true;
-                                    }
+                    if (spaces == -1 && (mal_pos[4] == 1 && mal_pos[5] == 1 && mal_pos[6] == 1 && mal_pos[7] == 1)){
+                        document.getElementById("resultBox").innerHTML = "No pieces will be move because you have no pieces to -1 from";
+                    }
+                    else if (spaces != 4 && spaces != 5){
+                        document.getElementById("npiece1").disabled = false;
+                        document.getElementById("npiece2").disabled = false;
+                        document.getElementById("npiece3").disabled = false;
+                        document.getElementById("npiece4").disabled = false;
+
+                        document.getElementById("btn").disabled = true;
+                        var modal = document.getElementById("newModal");
+                        setTimeout(() => {  modal.style.display = "block"; }, 1000);
+                        document.getElementById("newModalHead").innerHTML = "Result of Roll(spaces): " + spaces;
+
+                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") == null){
+                            document.getElementById("npiece1").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") == null){
+                            document.getElementById("npiece2").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") == null){
+                            document.getElementById("npiece3").disabled = true;
+                        }
+                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") == null){
+                            document.getElementById("npiece4").disabled = true;
+                        }
+                        if (spaces == -1){
+                            for (let i = 4; i <= 7;i++){
+                                if (mal_pos[i] == 1){
+                                    let n = "npiece" + (i-3);
+                                    document.getElementById(n).disabled = true;
                                 }
                             }
-                            if (document.getElementById("npiece1").disabled &&
-                                document.getElementById("npiece2").disabled &&
-                                document.getElementById("npiece3").disabled &&
-                                document.getElementById("npiece4").disabled){
-                                document.getElementById("newModalText").innerHTML = "No pieces will be move because you have no pieces to -1 from \n please end your turn";
-                                document.getElementById("btn").disabled = false;
-                             }
-                            
-                            
-                             document.getElementById("npiece1").onclick = function(){
-                                p = 4;
-                                pie = "b1";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-
-                                
-                            };
-                            document.getElementById("npiece2").onclick = function(){
-                                p = 5;
-                                pie = "b2";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                                
-                            };
-                            document.getElementById("npiece3").onclick = function(){
-                                p = 6;
-                                pie = "b3";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                                
-                            };
-                            document.getElementById("npiece4").onclick = function(){
-                                p = 7;
-                                pie = "b4";
-                                modal.style.display = "none";
-                                move(mal_pos[p],pie,spaces,p);
-                            
-                            };
-                            
                         }
+                        if (document.getElementById("npiece1").disabled &&
+                            document.getElementById("npiece2").disabled &&
+                            document.getElementById("npiece3").disabled &&
+                            document.getElementById("npiece4").disabled){
+                            document.getElementById("newModalText").innerHTML = "No pieces will be move because you have no pieces to -1 from \n please end your turn";
+                            document.getElementById("btn").disabled = false;
+                         }
+
+
+                         document.getElementById("npiece1").onclick = function(){
+                            p = 4;
+                            pie = "b1";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece2").onclick = function(){
+                            p = 5;
+                            pie = "b2";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece3").onclick = function(){
+                            p = 6;
+                            pie = "b3";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+
+                        };
+                        document.getElementById("npiece4").onclick = function(){
+                            p = 7;
+                            pie = "b4";
+                            modal.style.display = "none";
+                            move(mal_pos[p],pie,spaces,p);
+
+                        };
+
+                    }
                     else if (spaces == 4 || spaces == 5){
                         again[0] = spaces;
                         document.getElementById("btn").disabled = true;
@@ -376,11 +340,13 @@
                         document.getElementById("rollAgain").onclick = function() {rollAg(3)};
                         }
                     
-                    }
-                    
                     t = 0;
                 
-                }   
+                }
+                    
+                    
+                
+                   
             }
             
             
@@ -876,7 +842,7 @@
                     //roll animation??
                     
                     for (let i =0; i < 3; i++){
-                        yut = Math.floor(Math.random() * 2);
+                        yut = 1;//Math.floor(Math.random() * 2);
                         if (yut == 0){
                             var img = document.createElement("img");
                             img.src= "head.png";
@@ -900,7 +866,7 @@
                         }
                     }
                     
-                    yutB = Math.floor(Math.random() * 2);
+                    yutB = 1;//Math.floor(Math.random() * 2);
                      if (yutB == 0){
                         var img = document.createElement("img");
                         img.src= "head.png";
@@ -1406,64 +1372,66 @@
                         mal_pos[4] = 1;
                         catch_mal("b1",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[5]){
+                    if (mal_pos[n] == mal_pos[5]){
                         mal_pos[5] = 1;
                         catch_mal("b2",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[6]){
+                    if (mal_pos[n] == mal_pos[6]){
                         mal_pos[6] = 1;
                         catch_mal("b3",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[7]){
+                    if (mal_pos[n] == mal_pos[7]){
                         mal_pos[7] = 1;
                         catch_mal("b4",n,sp,ag);
                     } 
+                    pos_ary = [690,695,695,695,695,690,565,440,315,190,70,70,65,65,65,70,190,315,440,565,580,490,385,290,190,190,290,490,580];
                 }
                 else if (n >= 4 && (mal_pos[n] == mal_pos[0] || mal_pos[n] == mal_pos[1] || mal_pos[n] == mal_pos[2] || mal_pos[n] == mal_pos[3])){
                     if (mal_pos[n] == mal_pos[0]){
                         mal_pos[0] = 1;
                         catch_mal("r1",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[1]){
+                    if (mal_pos[n] == mal_pos[1]){
                         mal_pos[1] = 1;
                         catch_mal("r2",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[2]){
+                    if (mal_pos[n] == mal_pos[2]){
                         mal_pos[2] = 1;
                         catch_mal("r3",n,sp,ag);
                     }
-                    else if (mal_pos[n] == mal_pos[3]){
+                    if (mal_pos[n] == mal_pos[3]){
                         mal_pos[3] = 1;
                         catch_mal("r4",n,sp,ag);
                     } 
+                    pos_ary = [690,695,695,695,695,690,565,440,315,190,70,70,65,65,65,70,190,315,440,565,580,490,385,290,190,190,290,490,580];
                 }
                 
                 if (n >= 4 && (mal_pos[n] == mal_pos[4] || mal_pos[n] == mal_pos[5] || mal_pos[n] == mal_pos[6] || mal_pos[n] == mal_pos[7])){
                     if (mal_pos[n] == mal_pos[4] && n != 4){
-                        add_space("b1",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[5] && n != 5){
-                        add_space("b2",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[6] && n != 6){
-                        add_space("b3",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[7] && n != 7){
-                        add_space("b4",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     } 
                 }
                 else if (n < 4 && (mal_pos[n] == mal_pos[0] || mal_pos[n] == mal_pos[1] || mal_pos[n] == mal_pos[2] || mal_pos[n] == mal_pos[3])){
                     if (mal_pos[n] == mal_pos[0] && n != 0){
-                        add_space("r1",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[1] && n != 1){
-                        add_space("r2",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[2] && n != 2){
-                        add_space("r3",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[3] && n != 3){
-                        add_space("r4",20,mal_pos[n])
+                        add_space(m,15,mal_pos[n])
                     } 
                 }
             }
@@ -1651,97 +1619,10 @@
                 
             }
             
+            var pos_ary = [690,695,695,695,695,690,565,440,315,190,70,70,65,65,65,70,190,315,440,565,580,490,385,290,190,190,290,490,580];
             function add_space(posRn,spAdd, p){
-                let spFin = "";
-                switch (p){
-                    case 11:
-                        posit.left = 70 + spAdd + "px";
-                        break;
-                    case 10:
-                        posit.left = 190 + spAdd + "px";
-                        break;
-                    case 9:
-                        posit.left = 315 + spAdd + "px";
-                        break;
-                    case 8:
-                        posit.left = 440 + spAdd + "px";
-                        break;
-                    case 7:
-                        posit.left = 565 + spAdd + "px";
-                        break;
-                    case 6:
-                        posit.left = 690 + spAdd + "px";
-                        break;
-                    case 12:
-                        posit.left = 70 + spAdd + "px";
-                        break;
-                    case 26:
-                        posit.left = 190 + spAdd + "px";
-                        break;
-                    case 21:
-                        posit.left = 580 + spAdd + "px";
-                        break;
-                    case 5:
-                        posit.left = 695 + spAdd + "px";
-                        break;
-                    case 13:
-                        posit.left = 65 + spAdd + "px";
-                        break;
-                    case 27:
-                        posit.left = 290 + spAdd + "px";
-                        break;
-                    case 22:
-                        posit.left = 490 + spAdd + "px";
-                        break;
-                    case 4:
-                        posit.left = 695 + spAdd + "px";
-                        break;
-                    case 14:
-                        posit.left = 65 + spAdd + "px";
-                        break;
-                    case 24:
-                        posit.left = 290 + spAdd + "px";
-                        break;
-                    case 23:
-                        posit.left = 385 + spAdd + "px";
-                        break;
-                    case 28:
-                        posit.left = 490 + spAdd + "px";
-                        break;
-                    case 3:
-                        posit.left = 695 + spAdd + "px";
-                        break;
-                    case 15:
-                        posit.left = 65 + spAdd + "px";
-                        break;
-                    case 25:
-                        posit.left = 190 + spAdd + "px";
-                        break;
-                    case 29:
-                        posit.left = 580 + spAdd + "px";
-                        break;
-                    case 2:
-                        posit.left = 695 + spAdd + "px";
-                        break;
-                    case 16:
-                        posit.left = 70 + spAdd + "px";
-                        break;
-                    case 17:
-                        posit.left = 190 + spAdd + "px";
-                        break;
-                    case 18:
-                        posit.left = 315 + spAdd + "px";
-                        break;
-                    case 19:
-                        posit.left = 440 + spAdd + "px";
-                        break;
-                    case 20:
-                        posit.left = 565 + spAdd + "px";
-                        break;
-                    case 1:
-                        posit.left = 690 + spAdd + "px";
-                        break;
-                }
+                posit.left = pos_ary[p-1] + spAdd + "px";
+                pos_ary[p-1] += spAdd;
                 let img = document.getElementById(posRn)
                 img.style.left = posit.left;
             }
