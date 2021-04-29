@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href ="yut.css">
-    <head>
+    <head >
         <title>Yut Nori</title>
-        <h1 id="head">Welcome to Yut Nori</h1>
-        <h2 id="head2">Please Press Start to Continue</h2>
+        <h1 id="head" style="font-family:'Segoe UI';">Welcome to Yut Nori</h1>
+        <h2 id="head2" style="font-family:'Segoe UI';">Please Press Start to Continue</h2>
     </head>
-    
+    <div style="font-family:'Segoe UI';">
     <body onload="lod()">
         <!--Map-->
         <img src="floor.png" alt="opps something went wrong" style="width:800px;height:800px;" class="map">
@@ -21,7 +21,7 @@
 
       
         <!-- Trigger/Open The Modal (instructions) -->
-        <button id="howtoplay" style="border-radius: 12px;">How to Play</button>
+        <button id="howtoplay" style="border-radius: 12px;  position: absolute;left:420px; top:77px; width: 100px; height: 35px; font-size: 10pt; font-weight: bold;">How to Play</button>
         <!-- The Modal -->
         <div id="howtoplaymodal" class="modal">
             <!-- Modal content -->  
@@ -31,6 +31,15 @@
                 <p>The game consists of 1 game board, 4 sticks, and 8 board pieces. The sticks determine the spaces each team can move while each team gets 4 of the 8 board pieces.</p>
                 <h3>Gameplay:</h3>
                 <p>At the start of each turn, a player from a team rolls the sticks. The player then has the option to move the amount of spaces determined by the stick roll or to introduce a new piece to the gameboard and move that piece the amount of spaces determined by the stick roll. If all four piece finish, the team wins.</p>
+                <div class="row">
+                <img src="do.png" alt="opps something went wrong" style="width:150px;height:150px;"  class="column">
+                <img src="gae.png" alt="opps something went wrong" style="width:150px;height:150px;" class="column">
+                <img src="geol.png" alt="opps something went wrong" style="width:150px;height:150px;" class="column">
+                <img src="yut.png" alt="opps something went wrong" style="width:150px;height:150px;" class="column">
+                <img src="mo.png" alt="opps something went wrong" style="width:150px;height:150px;" class="column">
+                <img src="backdo.png" alt="opps something went wrong" style="width:150px;height:150px;" class="column">
+                </div>
+                <br>
                 <h3>Moving Options:</h3> 
                 <p>Players must move following the arrows along the board. Players can only change direction diagonally when the piece lands on a corner circle. </p>
                 <h3>Capturing Pieces:</h3> 
@@ -39,6 +48,9 @@
                 <p>A team can roll their sticks again when they roll either 4(yut) or 5(mo).(a team can roll again only once per turn meaning rolling 4 & 4 or 5 & 5 will not let them roll again) The team can also go again when they capture another team's piece with (geol)3 or less spaces.</p>
                 <h3>Stacking:</h3>
                 <p>A team stack their pieces if one of their pieces land on other piece of their team. When this happens, the pieces stack will count as one, move as one, and captured as one.(even if a team decides not to stack their piece, if the other team captures the space, every piece on that space will be captured.)</p>
+                <div style="align-content: center;"></div>
+                <img src="stackingteam.png" alt="opps something went wrong" style="width:50px;height:50px; ">
+            </div>
             </div>
         </div>
         
@@ -1655,7 +1667,7 @@
         </div>
         
         <!-- pieces left over -->
-        <table id="start" style="position: absolute; left: 850px; top: 250px; width: 210px;">
+        <table id="start" style="position: absolute; left: 850px; top: 250px; width: 210px; border: 2px solid black; border-collapse: collapse;">
             <tr>
                 <th>Team</th>
                 <th colspan="4">Mal Left</th>
@@ -1721,7 +1733,7 @@
         </table>
         
         <!-- pieces finished -->
-        <table id="finished" style="position: absolute; left: 1080px; top: 250px; width: 210px;">
+        <table id="finished" style="position: absolute; left: 1080px; top: 250px; width: 210px; border: 2px solid black; border-collapse: collapse;">
             <tr>
                 <th>Team</th>
                 <th colspan="4">Mal Finished</th>
@@ -1788,10 +1800,10 @@
         
         
         <!-- dice table -->
-        <table id="yut" style="position: absolute; left: 850px; top: 400px;">
-            <tr>
+        <table id="yut" style="position: absolute; left: 850px; top: 400px; border: 0px; border-collapse: collapse;">
+            <tr >
                 <th>Yut</th>
-                <td>
+                <td >
                     <img src="question.png" alt="opps something went wrong" style="width:80px;height:245px">
 
                 </td>
@@ -1867,3 +1879,4 @@
         
         
     </body>
+</div>

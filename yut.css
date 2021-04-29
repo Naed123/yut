@@ -124,7 +124,18 @@ table, th, td {
 }
 
 
-
+.column {
+    float: left;
+    
+    padding: 0px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 
 
