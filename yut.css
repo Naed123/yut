@@ -1,148 +1,162 @@
-body{background-color: sandybrown;}
-.map{z-index:1;}
-.s1{position:absolute;z-index:2;width:70px;height:70px}
-.sb{position:absolute;z-index:2;width:100px;height:100px}
-.s2{position:absolute;z-index:3;width:30px;height:30px}
-.arrow{position:absolute;z-index:2; height: 20px;}
+body {
+  background-color: sandybrown;
+}
+.map {
+  z-index: 1;
+}
+.s1 {
+  position: absolute;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+}
+.sb {
+  position: absolute;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+}
+.s2 {
+  position: absolute;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+}
+.arrow {
+  position: absolute;
+  z-index: 2;
+  height: 20px;
+}
 .center {
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-.btnMain{
-    position: absolute;
-    top: 127px;
-    left: 850px;
-    width: 300px;
-    height: 100px;
-    font-size: 40pt;
+.btnMain {
+  position: absolute;
+  top: 127px;
+  left: 850px;
+  width: 300px;
+  height: 100px;
+  font-size: 40pt;
 }
 
-
-table, th, td {
-    border: 2px solid black;
-    border-collapse: collapse;
-    text-align: center;
-    table-layout: fixed;
-    background-color: aliceblue}
+table,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+  background-color: aliceblue;
+}
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 10; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .modalRepeat {
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 5; /* Sit on top */
-    top: 360px;
-    left: 850px;
-    align-self: right;
-    width: 400px; /* Full width */
-    height: 300px; /* Full height */
-    background-color: white; /* Black w/ opacity */
-    border: 2px solid black;
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  top: 360px;
+  left: 850px;
+  align-self: right;
+  width: 400px; /* Full width */
+  height: 300px; /* Full height */
+  background-color: white; /* Black w/ opacity */
+  border: 2px solid black;
 }
 
 .newModal {
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 5; /* Sit on top */
-    top: 370px;
-    left: 850px;
-    align-self: right;
-    width: 370px; /* Full width */
-    height: 290px; /* Full height */
-    background-color: white; /* Black w/ opacity */
-    border: 2px solid black;
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  top: 370px;
+  left: 850px;
+  align-self: right;
+  width: 370px; /* Full width */
+  height: 290px; /* Full height */
+  background-color: white; /* Black w/ opacity */
+  border: 2px solid black;
 }
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 30px;
-    height: 50%;
-    border: 1px solid #888;
-    overflow: auto;
-    width: 80%; /* Could be more or less, depending on screen size */
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 30px;
+  height: 50%;
+  border: 1px solid #888;
+  overflow: auto;
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .container {
-    position: relative;
-    text-align: center;
-    color: white;
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
 .imgNum {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .btnModal {
-    position: absolute;
-    width: 50px;
-    height: 30px;
-    left: 320px;
-    top: 25px;
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  left: 320px;
+  top: 25px;
 }
 
 .rollAgain {
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    left: 850px;
-    top: 670px;
-    font-size: 30pt;
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  left: 850px;
+  top: 670px;
+  font-size: 30pt;
 }
 
-
 .column {
-    float: left;
-    
-    padding: 0px;
-  }
-  
-  /* Clear floats after image containers */
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+  float: left;
 
+  padding: 0px;
+}
 
-
-
-
-
-
-
-
-
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

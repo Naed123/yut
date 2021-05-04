@@ -21,7 +21,7 @@
 
       
         <!-- Trigger/Open The Modal (instructions) -->
-        <button id="howtoplay" style="border-radius: 12px;  position: absolute;left:420px; top:77px; width: 100px; height: 35px; font-size: 10pt; font-weight: bold;">How to Play</button>
+        <button id="howtoplay" style="border-radius: 12px;  position: absolute;left:460px; top:85px; width: 100px; height: 35px; font-size: 10pt; font-weight: bold;">How to Play</button>
         <!-- The Modal -->
         <div id="howtoplaymodal" class="modal">
             <!-- Modal content -->  
@@ -51,6 +51,14 @@
                 <div style="align-content: center;"></div>
                 <img src="stackingteam.png" alt="opps something went wrong" style="width:50px;height:50px; ">
             </div>
+        </div>
+      
+         <!-- Modal for winning-->
+        <div id="modalWinner" class="modal">
+            <!-- Modal content -->  
+            <div class="modal-content">
+                <h1 style="text-align: center;">Congratulations!! Team: <span id = "winText"></span> won the game!!</h1>
+                <button id = "btnReset" style="align-content: center; width: 200px;height: 100px;border-radius: 12px" onclick="reset()">Start Over</button>
             </div>
         </div>
         
@@ -368,7 +376,6 @@
                 var tip = 1;
                 var np = 3;
                 var n, nie;
-               // document.getElementById("btn").disabled = false;
                 document.getElementById("rollAgain").style.visibility = "hidden";
                 
                 var modal = document.getElementById("repeatModal");
@@ -443,17 +450,17 @@
                         document.getElementById("piece3").disabled = true;
                         document.getElementById("piece4").disabled = true;
                     }
-                    if (tip == 1){
-                        if (team == 1 && mal_pos[0] == 1 && again[0] == -1){
+                    if (p <= 3){
+                        if (team == 1 && mal_pos[0] == 1 && again[0] == -1 && typeof(document.getElementById("r1")) != "undefined" && document.getElementById("r1") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 1 && mal_pos[0] == 1 && again[1] == -1){
+                        else if (team == 1 && mal_pos[0] == 1 && again[1] == -1 && typeof(document.getElementById("r1")) != "undefined" && document.getElementById("r1") != null){
                             document.getElementById("choice1").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[4] == 1 && again[0] == -1){
+                        else if (team == 3 && mal_pos[4] == 1 && again[0] == -1 && typeof(document.getElementById("b1")) != "undefined" && document.getElementById("b1") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[4] == 1 && again[1] == -1){
+                        else if (team == 3 && mal_pos[4] == 1 && again[1] == -1 && typeof(document.getElementById("b1")) != "undefined" && document.getElementById("b1") != null){
                             document.getElementById("choice1").disabled = false;
                         }
                         else {
@@ -497,16 +504,16 @@
                         document.getElementById("piece4").disabled = true;
                     }
                     if (tip == 1){
-                        if (team == 1 && mal_pos[1] == 1 && again[0] == -1){
+                        if (team == 1 && mal_pos[1] == 1 && again[0] == -1 && typeof(document.getElementById("r2")) != "undefined" && document.getElementById("r2") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 1 && mal_pos[1] == 1 && again[1] == -1){
+                        else if (team == 1 && mal_pos[1] == 1 && again[1] == -1 && typeof(document.getElementById("r2")) != "undefined" && document.getElementById("r2") != null){
                             document.getElementById("choice1").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[5] == 1 && again[0] == -1){
+                        else if (team == 3 && mal_pos[5] == 1 && again[0] == -1 && typeof(document.getElementById("b2")) != "undefined" && document.getElementById("b2") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[5] == 1 && again[1] == -1){
+                        else if (team == 3 && mal_pos[5] == 1 && again[1] == -1 && typeof(document.getElementById("b2")) != "undefined" && document.getElementById("b2") != null){
                             document.getElementById("choice1").disabled = false;
                         }
                         else {
@@ -525,8 +532,9 @@
                             nie = "b2";
                         }
                         document.getElementById("btn").disabled = false;
-                        move(mal_pos[n],nie,again[np],n,1);
                         modal.style.display = "none";
+                        move(mal_pos[n],nie,again[np],n,1);
+                        
                     }
                 };
                 
@@ -547,16 +555,16 @@
                         document.getElementById("piece4").disabled = true;
                     }
                     if (tip == 1){
-                        if (team == 1 && mal_pos[2] == 1 && again[0] == -1){
+                        if (team == 1 && mal_pos[2] == 1 && again[0] == -1 && typeof(document.getElementById("r3")) != "undefined" && document.getElementById("r3") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 1 && mal_pos[2] == 1 && again[1] == -1){
+                        else if (team == 1 && mal_pos[2] == 1 && again[1] == -1 && typeof(document.getElementById("r3")) != "undefined" && document.getElementById("r3") != null){
                             document.getElementById("choice1").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[6] == 1 && again[0] == -1){
+                        else if (team == 3 && mal_pos[6] == 1 && again[0] == -1 && typeof(document.getElementById("b3")) != "undefined" && document.getElementById("b3") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[6] == 1 && again[1] == -1){
+                        else if (team == 3 && mal_pos[6] == 1 && again[1] == -1 && typeof(document.getElementById("b3")) != "undefined" && document.getElementById("b3") != null){
                             document.getElementById("choice1").disabled = false;
                         }
                         else {
@@ -597,16 +605,16 @@
                         document.getElementById("piece1").disabled = true;
                     }
                     if (tip == 1){
-                        if (team == 1 && mal_pos[3] == 1 && again[0] == -1){
+                        if (team == 1 && mal_pos[3] == 1 && again[0] == -1 && typeof(document.getElementById("r4")) != "undefined" && document.getElementById("r4") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 1 && mal_pos[3] == 1 && again[1] == -1){
+                        else if (team == 1 && mal_pos[3] == 1 && again[1] == -1 && typeof(document.getElementById("r4")) != "undefined" && document.getElementById("r4") != null){
                             document.getElementById("choice1").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[7] == 1 && again[0] == -1){
+                        else if (team == 3 && mal_pos[7] == 1 && again[0] == -1 && typeof(document.getElementById("b4")) != "undefined" && document.getElementById("b4") != null){
                             document.getElementById("choice2").disabled = false;
                         }
-                        else if (team == 3 && mal_pos[7] == 1 && again[1] == -1){
+                        else if (team == 3 && mal_pos[7] == 1 && again[1] == -1 && typeof(document.getElementById("b4")) != "undefined" && document.getElementById("b4") != null){
                             document.getElementById("choice1").disabled = false;
                         }
                         else {
@@ -648,17 +656,17 @@
                     document.getElementById("choice2").style.visibility = "hidden";
                     document.getElementById("modalText").innerHTML = "Chose a piece to move " + again[1] + " spaces";
                     
-                    if (team == 1){
-                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") == null){
+                    if (p <= 3){
+                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") === null){
                             document.getElementById("piece1").disabled = true;
                         }
-                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") == null){
+                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") === null){
                             document.getElementById("piece2").disabled = true;
                         }
-                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") == null){
+                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") === null){
                             document.getElementById("piece3").disabled = true;
                         }
-                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") == null){
+                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") === null){
                             document.getElementById("piece4").disabled = true;
                         }
                         if (again[1] == -1){
@@ -670,17 +678,17 @@
                             }
                         } 
                     }
-                    else if (team == 3){
-                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") == null){
+                    else if (p >=4){
+                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") === null){
                             document.getElementById("piece1").disabled = true;
                         }
-                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") == null){
+                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") === null){
                             document.getElementById("piece2").disabled = true;
                         }
-                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") == null){
+                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") === null){
                             document.getElementById("piece3").disabled = true;
                         }
-                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") == null){
+                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") === null){
                             document.getElementById("piece4").disabled = true;
                         }
                         if (again[1] == -1){
@@ -705,7 +713,7 @@
                         document.getElementById("btn").disabled = false;
                     }
                     np = 1;
-
+                    
                 };
                 
                 document.getElementById("choice2").onclick = function() {
@@ -721,17 +729,17 @@
                     move(mal_pos[p],pie,again[1],p,1);
 
                     
-                    if (team == 1){
-                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") == null){
+                    if (p <=3){
+                        if (typeof(document.getElementById("r1")) == "undefined" || document.getElementById("r1") === null){
                             document.getElementById("piece1").disabled = true;
                         }
-                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") == null){
+                        if (typeof(document.getElementById("r2")) == "undefined" || document.getElementById("r2") === null){
                             document.getElementById("piece2").disabled = true;
                         }
-                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") == null){
+                        if (typeof(document.getElementById("r3")) == "undefined" || document.getElementById("r3") === null){
                             document.getElementById("piece3").disabled = true;
                         }
-                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") == null){
+                        if (typeof(document.getElementById("r4")) == "undefined" || document.getElementById("r4") === null){
                             document.getElementById("piece4").disabled = true;
                         }
                         if (again[0] == -1){
@@ -743,17 +751,17 @@
                             }
                         } 
                     }
-                    else if (team == 3){
-                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") == null){
+                    else if (p >=4){
+                        if (typeof(document.getElementById("b1")) == "undefined" || document.getElementById("b1") === null){
                         document.getElementById("piece1").disabled = true;
                         }
-                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") == null){
+                        if (typeof(document.getElementById("b2")) == "undefined" || document.getElementById("b2") === null){
                             document.getElementById("piece2").disabled = true;
                         }
-                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") == null){
+                        if (typeof(document.getElementById("b3")) == "undefined" || document.getElementById("b3") === null){
                             document.getElementById("piece3").disabled = true;
                         }
-                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") == null){
+                        if (typeof(document.getElementById("b4")) == "undefined" || document.getElementById("b4") === null){
                             document.getElementById("piece4").disabled = true;
                         }
                         if (again[0] == -1){
@@ -779,8 +787,9 @@
                         document.getElementById("btn").disabled = false;
                     }
                     np = 0;
-
+                    
                 };
+                
             }
             
             
@@ -851,7 +860,7 @@
                     //roll animation??
                     
                     for (let i =0; i < 3; i++){
-                        yut = 1;//Math.floor(Math.random() * 2);
+                        yut = Math.floor(Math.random() * 2);
                         if (yut == 0){
                             var img = document.createElement("img");
                             img.src= "head.png";
@@ -875,7 +884,7 @@
                         }
                     }
                     
-                    yutB = 1;//Math.floor(Math.random() * 2);
+                    yutB = Math.floor(Math.random() * 2);
                      if (yutB == 0){
                         var img = document.createElement("img");
                         img.src= "head.png";
@@ -1060,24 +1069,10 @@
             }
             
             
-            
-            /*
-            
-            
-               // Get the modal
-            var modal = document.getElementById("repeatModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("howtoplay");
-
-
-            // When the user clicks on the button, open the modal
-            btn.onclick = function() {
-            modal.style.display = "block";
-            }*/
+        
 
             function win(m){
-               switch (m){
+                switch (m){
                     case "r1":
                        document.getElementById(m).remove();
                        document.getElementById("rr1").style.visibility = "visible";
@@ -1110,7 +1105,20 @@
                        document.getElementById(m).remove();
                        document.getElementById("bb4").style.visibility = "visible";
                        break;
-               }   
+                }   
+            
+                if (document.getElementById("rr1").style.visibility == "visible" && document.getElementById("rr2").style.visibility == "visible" && document.getElementById("rr3").style.visibility == "visible" && document.getElementById("rr4").style.visibility == "visible" ){
+                    var modal = document.getElementById("modalWinner");
+                    modal.style.display = "block";
+                    document.getElementById("winText").innerHTML = "Red";
+                    document.getElementById("winText").color = "red";
+                }
+                else if (document.getElementById("bb1").style.visibility == "visible" && document.getElementById("bb2").style.visibility == "visible" && document.getElementById("bb3").style.visibility == "visible" && document.getElementById("bb4").style.visibility == "visible" ){
+                    var modal = document.getElementById("modalWinner");
+                    modal.style.display = "block";
+                    document.getElementById("winText").innerHTML = "Blue";
+                    document.getElementById("winText").color = "blue";
+                }
             }
             
             function move(p,m,sp,n,ag){
@@ -1179,6 +1187,7 @@
                     document.getElementById("way2").innerHTML = "bottom";
                     
                     document.getElementById("way2").onclick = function() {
+                        document.getElementById("btn").disabled = true;
                         pos(p+sp);
                         img.style.left= posit.left;
                         img.style.top = posit.top;
@@ -1187,10 +1196,13 @@
                         modal.style.display = "none";
                         p += sp;
                         mal_pos[n] = p;
-                        document.getElementById("btn").disabled = false;
+                        if (document.getElementById("repeatModal").style.display == "none"){
+                            document.getElementById("btn").disabled = false;
+                        }
                     };
                     
                     document.getElementById("way1").onclick = function() {
+                        document.getElementById("btn").disabled = true;
                         if (sp <= 2){
                             pos(25+sp);
                             img.style.left= posit.left;
@@ -1205,7 +1217,6 @@
                             img.style.top = posit.top;
                             var src = document.getElementById("test");
                             src.appendChild(img);
-                            //modal.style.display = "none";
                             p = 23;
                         }
                         else if (sp >=4){
@@ -1214,12 +1225,13 @@
                             img.style.top = posit.top;
                             var src = document.getElementById("test");
                             src.appendChild(img);
-                            //modal.style.display = "none";
                             p = 24 + sp;
                         }
                         modal.style.display = "none";
-                        document.getElementById("btn").disabled = false;
                         mal_pos[n] = p;
+                        if (document.getElementById("repeatModal").style.display == "none"){
+                            document.getElementById("btn").disabled = false;
+                        }
                     };
                 }
                 else if (p == 23 && sp != -1){
@@ -1231,6 +1243,7 @@
                     document.getElementById("way2").innerHTML = "right-bottom";
                     
                     document.getElementById("way1").onclick = function() {
+                        document.getElementById("btn").disabled = true;
                         let i = sp + p;
                         if (sp + p > 25){
                             p = i -10;
@@ -1250,11 +1263,14 @@
                             p += sp;
                         }
                         modal.style.display = "none";
-                        document.getElementById("btn").disabled = false;
+                        if (document.getElementById("repeatModal").style.display == "none"){
+                            document.getElementById("btn").disabled = false;
+                        }
                         mal_pos[n] = p;
                     };
                     
                     document.getElementById("way2").onclick = function() {
+                        document.getElementById("btn").disabled = true;
                         if (sp >= 3){
                             win(m);
                             p = 30;
@@ -1270,7 +1286,9 @@
                             p = 27 + sp;
                         }
                         modal.style.display = "none";
-                        document.getElementById("btn").disabled = false;
+                        if (document.getElementById("repeatModal").style.display == "none"){
+                            document.getElementById("btn").disabled = false;
+                        }
                         mal_pos[n] = p;
                     };
                 }
@@ -1417,30 +1435,30 @@
                 
                 if (n >= 4 && (mal_pos[n] == mal_pos[4] || mal_pos[n] == mal_pos[5] || mal_pos[n] == mal_pos[6] || mal_pos[n] == mal_pos[7])){
                     if (mal_pos[n] == mal_pos[4] && n != 4){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[5] && n != 5){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[6] && n != 6){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[7] && n != 7){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     } 
                 }
                 else if (n < 4 && (mal_pos[n] == mal_pos[0] || mal_pos[n] == mal_pos[1] || mal_pos[n] == mal_pos[2] || mal_pos[n] == mal_pos[3])){
                     if (mal_pos[n] == mal_pos[0] && n != 0){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[1] && n != 1){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[2] && n != 2){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     }
                     else if (mal_pos[n] == mal_pos[3] && n != 3){
-                        add_space(m,15,mal_pos[n])
+                        add_space(m,20,mal_pos[n])
                     } 
                 }
             }
@@ -1638,29 +1656,33 @@
             
             
             
-            function winner(){
-                //1.make a modal(pop up) and put a button and txt. 2. for the button it calls reset function
-                
-                /*
-                
-                var modal = document.getElementById("modal name");
-                    modal.style.display = "block"   //show modal
-                    document.getElementById("modal text").innerHTML = "Which way would you move " + sp + " spaces";
-                    document.getElementById("button name").innerHTML = "left-bottom";
-                    button on lick --> reset
-                */
-                
-                
-                
-                
-                
-                
-            }
-            
             
             
             function resets(){
-                
+                mal_pos = [1,1,1,1,1,1,1,1];
+                t = 0;
+                res = [];
+                left = 0;
+                top = 0;
+                again = [];
+            
+                tableC = 1;
+                tablec2 = 1;
+
+                document.getElementById("rr1").style.visibility = "hidden";
+                document.getElementById("rr2").style.visibility = "hidden";
+                document.getElementById("rr3").style.visibility = "hidden";
+                document.getElementById("rr4").style.visibility = "hidden";
+                document.getElementById("bb1").style.visibility = "hidden";
+                document.getElementById("bb2").style.visibility = "hidden";
+                document.getElementById("bb3").style.visibility = "hidden";
+                document.getElementById("bb4").style.visibility = "hidden";
+
+                document.getElementById("modalChoice").style.visibility = "hidden";
+                document.getElementById("modalText").innerHTML = "Please choose a piece to move";
+                document.getElementById("newModalText").innerHTML = "Please choose a piece to move";
+                document.getElementById("modalChoice").innerHTML = "How many spaces would you like to move that piece?";
+                document.getElementById("modalWinner").style.display = "none";
             }
         </script>
         <div id = "test">
